@@ -1,0 +1,6 @@
+{
+  "extends": ["prettier", "airbnb", "airbnb/hooks"],
+  "env": {
+    "browser": true
+  }
+}
