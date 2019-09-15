@@ -2,5 +2,8 @@
   "extends": ["prettier", "airbnb", "airbnb/hooks"],
   "env": {
     "browser": true
+  },
+  "rules": {
+    "arrowParens": "as-needed"
   }
 }
