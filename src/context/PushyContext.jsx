@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 const PushyMenuContext = React.createContext(true);
 
-const PushyMenuProvider = props => {
+const PushyMenuProvider = ({ children }) => {
   const [state, setState] = useState(false);
   return (
     <PushyMenuContext.Provider value={[state, setState]}>
-      {props.children}
+      {children}
     </PushyMenuContext.Provider>
   );
 };

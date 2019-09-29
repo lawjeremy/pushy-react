@@ -1,6 +1,6 @@
 {
   "name": "pushy-react",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha.0",
   "description": "A React friendly version of the fabulous pushy library by Christopher Yee",
   "main": "build/index.js",
   "keywords": [
