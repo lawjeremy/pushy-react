@@ -95,6 +95,7 @@ const Pushy = ({ right, children }) => {
     } else {
       if (right) {
       } else {
+        document.body.style.overflow = 'visible';
         document.body.style['-webkit-transform'] = 'translate3d(0,0,0)';
         document.body.style['-ms-transform'] = 'translate3d(0,0,0)';
         document.body.style['transform'] = 'translate3d(0,0,0)';
