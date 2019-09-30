@@ -8,7 +8,14 @@
     "menu",
     "react"
   ],
-  "author": "Jeremy Law @lawjeremy",
+  "author": {
+    "name": "Jeremy Law",
+    "url": "https://jeremylaw.ca/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lawjeremy/pushy-react.git"
+  },
   "license": "ISC",
   "peerDependencies": {
     "prop-types": "^15.7.2",
