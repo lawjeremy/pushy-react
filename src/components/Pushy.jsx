@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { PushyMenuContext } from '../context/PushyContext';
+import defaultTheme from '../themes/default';
 
 const menuWidth = '200px';
 
@@ -13,20 +13,20 @@ const PushyNav = styled.nav`
   top: 0;
   ${({ right }) => (right ? 'right: 0' : `left: 0`)};
   z-index: 9999;
-  background: #191918;
-  color: #b3b3b1;
+  background: ${({ theme }) => theme.pushy.background};
+  color: ${({ theme }) => theme.pushy.color};
   overflow: auto;
   -webkit-overflow-scrolling: touch; /* enables momentum scrolling in iOS overflow elements */
 
   a {
     display: block;
-    color: #b3b3b1;
+    color: ${({ theme }) => theme.pushy.a.color};
     padding: 15px 30px;
     text-decoration: none;
   }
 
   a:hover {
-    color: #fff;
+    color: ${({ theme }) => theme.pushy.a.hover.color};
   }
 
   ul {
@@ -75,8 +75,10 @@ const SiteOverlay = styled.div`
   animation: fade 500ms;
 `;
 
-const Pushy = ({ right, children }) => {
+const Pushy = ({ right, children, theme = {} }) => {
   const [pushyIsOpen, setPushyIsOpen] = useContext(PushyMenuContext);
+
+  const styles = Object.assign(defaultTheme, theme);
 
   useEffect(() => {
     if (pushyIsOpen) {
@@ -118,22 +120,24 @@ const Pushy = ({ right, children }) => {
   }, [pushyIsOpen, right]);
 
   return (
-    <>
-      {pushyIsOpen && (
-        <SiteOverlay
-          onClick={() => {
-            if (pushyIsOpen) {
-              setPushyIsOpen(false);
-            }
-          }}
-        />
-      )}
-      <PushyNav isOpen={pushyIsOpen} right={right}>
-        <PushyContent isOpen={pushyIsOpen} right={right}>
-          <ul>{children}</ul>
-        </PushyContent>
-      </PushyNav>
-    </>
+    <ThemeProvider theme={styles}>
+      <>
+        {pushyIsOpen && (
+          <SiteOverlay
+            onClick={() => {
+              if (pushyIsOpen) {
+                setPushyIsOpen(false);
+              }
+            }}
+          />
+        )}
+        <PushyNav isOpen={pushyIsOpen} right={right}>
+          <PushyContent isOpen={pushyIsOpen} right={right}>
+            <ul>{children}</ul>
+          </PushyContent>
+        </PushyNav>
+      </>
+    </ThemeProvider>
   );
 };
 
